@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home - MealMate</title>
+    <link rel="stylesheet" href="{% static 'delivery/restaurant_style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Welcome to MealMate, {{ username }}!</h2>
+
+        <div class="form-container">
+        <h2>Our Restaurants</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Restaurant Name</th>
+                    <th>Picture</th>
+                    <th>Cuisine</th>
+                    <th>Rating</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in restaurantList %}
+                    <tr>
+                        <td>{{ r.name }}</td>
+                        <td>
+                            <img src="{{ r.image_url }}" alt="{{ r.name }}">
+                        </td>
+                        <td>{{ r.cuisine }}</td>
+                        <td>{{ r.rating }}</td>
+
+                        <td>
+                            <a href="{% url 'view_menu' r.id username %}">View Menu</a>
+                            <br>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="submit" style="float: left;" class="btn">
+            <a href="/">Log Out</a></button>
+    </div>
+</body>
+</html>

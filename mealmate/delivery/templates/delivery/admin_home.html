@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - MealMate</title>
+    <link rel="stylesheet" href="{% static 'delivery/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Welcome to MealMate, Admin!</h2>
+
+        <div class="options">
+            <a href="add_restaurant" class="btn">Add Restaurant</a>
+            <a href="show_restaurants" class="btn">Show Restaurants</a>
+
+            <button type="submit" style="float: left;" class="btn">
+            <a href="javascript:history.back()">Log Out</a></button>
+        </div>
+    </div>
+</body>
+</html>

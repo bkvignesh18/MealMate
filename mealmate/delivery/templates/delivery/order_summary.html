@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - MealMate</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'delivery/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Thank You for your order, {{ username }}!</h2>
+
+        <p><strong>Delivery Address:</strong></p>
+        <p>{{ customer.address }}</p>
+        <br>
+
+        <p>Your order will be delivered to this location shortly.</p> 
+        <p>Please pay ₹{{ total_price }} at the time of delivery.</p>
+        <br>
+        <p>Thank you for choosing Meal Mate!</p>
+
+        <a class="btn" href="{% url 'customer_home' username %}">Back to Home</a>
+    </div>
+</body>
+</html>

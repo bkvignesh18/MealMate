@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant - MealMate</title>
+    <link rel="stylesheet" href="{% static 'delivery/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add a Restaurant</h2>
+        <form action="{% url 'restaurant_success' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Restaurant Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="image_url">Image URL:</label>
+            <input type="url" id="image_url" name="image_url" required>
+
+            <label for="cuisine">Cuisine Type:</label>
+            <input type="text" id="cuisine" name="cuisine" required>
+
+            <label for="rating">Rating (1 to 5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" required>
+
+            <button type="submit" class="btn">Submit Restaurant</button>
+        </form>
+    </div>
+</body>
+</html>

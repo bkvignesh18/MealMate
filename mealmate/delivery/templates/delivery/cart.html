@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - MealMate</title>
+    <link rel="stylesheet" href="{% static 'delivery/menu_style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>MealMate -  Cart</h2>
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <thead>
+                <tr style="background-color: #f0f0f0;">
+                    <th style="text-align: left; padding: 8px;">Item Name</th>
+                    <th style="text-align: left; padding: 8px;">Picture</th>
+                    <th style="text-align: left; padding: 8px;">Description</th>
+                    <th style="text-align: left; padding: 8px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itemList %}
+                <tr style="border-top: 1px solid #ccc;">
+                    <td style="padding: 8px;">{{ item.name }}</td>
+                    <td style="padding: 8px;">
+                        <img src="{{ item.image_url }}" alt="{{ item.name }}" style="width: 100px; height: 60px; object-fit: cover; border-radius: 4px;">
+                    </td>
+                    <td style="padding: 8px;">{{ item.description }}</td>
+                    <td style="padding: 8px;">₹{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Total price : {{total_price}}</h2>
+
+            <button type="submit" style="float: left;" class="btn">
+                <a href="javascript:history.back()">Go Back</a></button>
+
+            <form action="{% if total_price > 0 %}{% url 'place_order' username %}{% else %}#{% endif %}">
+                 <button type="submit" style="float: right;" class="btn">Check Out</button>
+            </form>
+    </div>
+</body>
+</html>

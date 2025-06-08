@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - MealMate</title>
+    <link rel="stylesheet" href="{% static 'delivery/menu_style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Welcome to MealMate, {{ username }}!</h2>
+
+        <h3 style="text-align: center;">Menu</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <thead>
+                <tr style="background-color: #f0f0f0;">
+                    <th style="text-align: left; padding: 8px;">Item Name</th>
+                    <th style="text-align: left; padding: 8px;">Picture</th>
+                    <th style="text-align: left; padding: 8px;">Description</th>
+                    <th style="text-align: left; padding: 8px;">Price</th>
+                    <th style="text-align: left; padding: 8px;">Is Veg</th>
+                    <th style="text-align: left; padding: 8px;">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itemList %}
+                <tr style="border-top: 1px solid #ccc;">
+                    <td style="padding: 8px;">{{ item.name }}</td>
+                    <td style="padding: 8px;">
+                        <img src="{{ item.image_url }}" alt="{{ item.name }}" style="width: 100px; height: 60px; object-fit: cover; border-radius: 4px;">
+                    </td>
+                    <td style="padding: 8px;">{{ item.description }}</td>
+                    <td style="padding: 8px;">₹{{ item.price }}</td>
+                    <td style="padding: 8px;">{{ item.vegeterian }}</td>
+                     <td>
+                        <a href="{% url 'add_to_cart' item.id username %}">Add to cart</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" style="float: left;" class="btn">
+        <a href="javascript:history.back()">Go Back</a></button>
+        
+        <button type="submit" style="float: right;" class="btn">
+        <a href="{% url 'show_cart' username %}" >Go to cart</a></button>
+    </div>
+</body>
+</html>
