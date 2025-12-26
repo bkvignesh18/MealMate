@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Customer, Restaurant, Item, Cart
 
@@ -133,7 +133,7 @@ def update_menu(request, id):
                 image_url = image_url
             )
 
-        return render(request, 'delivery/admin_home.html')
+        return redirect(request.META.get("HTTP_REFERER", "/"))
     
     else:
         itemList = restaurant.items.all()
@@ -173,4 +173,5 @@ def place_order(request, username):
             'customer' : customer,
             'total_price' : total_price
         })
+
     
